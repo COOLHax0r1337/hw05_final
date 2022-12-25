@@ -37,6 +37,7 @@ class PostURLTest(TestCase):
             f'/auth/login/?next=/posts/{cls.post.id}/edit/')
         cls.INDEX_URL = reverse('posts:index')
         cls.CREATE_POST_URL = reverse('posts:post_create')
+        cls.FOLLOW_INDEX_URL = reverse('posts:follow_index')
 
     def setUp(self):
         self.guest_client = Client()
@@ -51,6 +52,7 @@ class PostURLTest(TestCase):
             self.POST_DETAIL_URL: 'posts/post_detail.html',
             self.CREATE_POST_URL: 'posts/create_post.html',
             self.POST_EDIT_URL: 'posts/create_post.html',
+            self.FOLLOW_INDEX_URL: 'posts/follow.html'
         }
         for url, template in templates_url_names.items():
             with self.subTest(url=url):

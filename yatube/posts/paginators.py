@@ -1,6 +1,4 @@
 from django.core.paginator import Paginator
-# from . models import Post
-# from . views import POST_LIMIT
 from django.conf import settings
 
 

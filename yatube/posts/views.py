@@ -94,11 +94,12 @@ def post_edit(request, post_id):
 @login_required
 def add_comment(request, post_id):
     form = CommentForm(request.POST or None)
-    if form.is_valid():
-        comment = form.save(commit=False)
-        comment.author = request.user
-        comment.post = get_object_or_404(Post, pk=post_id)
-        comment.save()
+    if not form.is_valid():
+        return render(request, 'posts:post_detail', post_id=post_id)
+    comment = form.save(commit=False)
+    comment.author = request.user
+    comment.post = get_object_or_404(Post, pk=post_id)
+    comment.save()
     return redirect('posts:post_detail', post_id=post_id)
 
 

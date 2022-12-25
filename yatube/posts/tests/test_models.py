@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 
-from ..models import Group, Post
+from ..models import Group, Post, Comment
 
 User = get_user_model()
 
@@ -62,3 +62,14 @@ class PostModelTest(TestCase):
                 self.assertEqual(
                     post._meta.get_field(field).help_text, expected_value
                 )
+
+    def test_comment_verbose_name(self):
+        self.assertEqual(
+            Comment._meta.get_field('text').verbose_name, 'Текст комментария'
+        )
+
+    def test_comment_help_text(self):
+        self.assertEqual(
+            Comment._meta.get_field('text').help_text,
+            'Текст вашего комментария'
+        )
